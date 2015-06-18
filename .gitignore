@@ -1,5 +1,5 @@
 .module-cache/
-node_modules
+/node_modules
 logs
 *.log
 *.project
