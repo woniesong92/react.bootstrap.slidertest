@@ -7,11 +7,6 @@
     "build": "jsx react-native-bootstrap-slider.jsx > index.js"
   },
   "main": "index.js",
-  "browserify": {
-    "transform": [
-      "reactify"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/brownieboy/react.bootstrap.slidertest.git"
@@ -29,13 +24,15 @@
   "author": "Michael Brown <brownieboy@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "react": "^0.12.1",
-    "jquery": "^1",
     "bootstrap": "^3.1",
-    "bootstrap-slider": "^4"
+    "bootstrap-slider": "^4",
+    "jquery": "^1",
+    "react": "0.13.x"
   },
   "devDependencies": {
     "browserify": "^9.0.3",
-    "react-tools": "~0.11.2"
+    "gulp": "^3.9.0",
+    "vinyl-source-stream": "^1.1.0",
+    "babelify": "^6.1.2"
   }
 }
