@@ -1,4 +1,7 @@
-var BoostrapSlider = require("BoostrapSlider.jsx");
+var React = require("react");
+// var $ = jQuery = require("jquery");
+// var bootstrap = require("bootstrap");
+var BootstrapSlider = require("bootstrap-slider");
 var SliderNative = require("./SliderNative.jsx");
 
 var BrowserDetectMixin = {

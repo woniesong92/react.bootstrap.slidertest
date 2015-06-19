@@ -3,14 +3,14 @@ var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var vendors = [
-  "bootstrap", "bootstrap-slider", "detect-browser", "jquery", "react"
+  "bootstrap", "bootstrap-slider","jquery", "react"
 ];
 
 var PATH = {
-   "src": "src",
-   "srcjs": "src/js",
-   "distsrc": "dist/src",
-   "distsrcjs": "dist/src/js",
+   "src": "./src",
+   "srcjs": "./src/js",
+   "distsrc": "./dist/src",
+   "distsrcjs": "./dist/src/js",
 };
 
 
@@ -80,7 +80,7 @@ gulp.task('vendors', function () {
 
 gulp.task('app', function () {
     var stream = browserify({
-            entries: [PATH.srcjs + '/index.jsx'],
+            entries: [PATH.srcjs + "/app.jsx"],
             transform: [babelify],
             debug: false,
             extensions: ['.jsx'],
