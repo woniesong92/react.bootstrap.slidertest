@@ -87,9 +87,9 @@ gulp.task('app', function () {
             fullPaths: false
         });
 
-    // vendors.forEach(function(vendor) {
-    //     stream.external(vendor);
-    // });
+    vendors.forEach(function(vendor) {
+        stream.external(vendor);
+    });
 
     return stream.bundle()
                  .pipe(source('index.js'))
