@@ -3,7 +3,7 @@ var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var vendors = [
-  "bootstrap", "bootstrap-slider","jquery", "react"
+  "jquery", "bootstrap", "bootstrap-slider", "react"
 ];
 
 var PATH = {
@@ -87,9 +87,9 @@ gulp.task('app', function () {
             fullPaths: false
         });
 
-    vendors.forEach(function(vendor) {
-        stream.external(vendor);
-    });
+    // vendors.forEach(function(vendor) {
+    //     stream.external(vendor);
+    // });
 
     return stream.bundle()
                  .pipe(source('index.js'))

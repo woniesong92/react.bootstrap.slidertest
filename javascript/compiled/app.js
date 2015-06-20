@@ -19,6 +19,7 @@ var Demo = React.createClass({displayName: "Demo",
         return (
             React.createElement("div", null, 
                 React.createElement(SliderNativeBootstrap, {
+                    polyfill: false,
                     value: this.state.currentValue, 
                     handleChange: this.changeValue, 
                     step: this.state.step, 
