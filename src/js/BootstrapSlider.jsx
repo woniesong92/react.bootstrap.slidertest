@@ -1,5 +1,3 @@
-// var jQuery = require("jquery");
-// var $ = jQuery;
 var React = require("react");
 // Bootstrap-slider.js from https://github.com/seiyria/bootstrap-slider
 var BSSlider = require("bootstrap-slider");   
@@ -7,7 +5,8 @@ var BSSlider = require("bootstrap-slider");
 module.exports = React.createClass({
     // BootstrapSlider
     render: function () {
-        // The slider's an input.  That's all we need.  We'll do the rest in JS.
+        // The slider's an input.  That's all we need.  We'll do the rest in JS  in the
+        // componentDidMount and componentDidUpdate methods
         return (
                 <input />
             );
@@ -38,14 +37,12 @@ module.exports = React.createClass({
             .setAttribute("step", this.props.step)
             .setValue(this.props.value);
 
-
         var sliderEnable = this.props.disabled === "disabled" ? false : true;
         var currentlyEnabled = this.mySlider.isEnabled();
 
         if(sliderEnable) {
             if(!currentlyEnabled) {
                 this.mySlider.enable();
-
             }
         }
         else {

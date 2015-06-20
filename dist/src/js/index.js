@@ -22,7 +22,6 @@ var Demo = React.createClass({
             "div",
             null,
             React.createElement(SliderNativeBootstrap, {
-                polyfill: false,
                 value: this.state.currentValue,
                 handleChange: this.changeValue,
                 step: this.state.step,
@@ -61,9 +60,9 @@ React.render(React.createElement(Demo, {
     min: 1000,
     step: 1000 }), document.getElementById("main"));
 
+// polyfill={false}
+
 },{"./SliderNativeBootstrap":4,"react":"react"}],2:[function(require,module,exports){
-// var jQuery = require("jquery");
-// var $ = jQuery;
 "use strict";
 
 var React = require("react");
@@ -75,7 +74,8 @@ module.exports = React.createClass({
 
     // BootstrapSlider
     render: function render() {
-        // The slider's an input.  That's all we need.  We'll do the rest in JS.
+        // The slider's an input.  That's all we need.  We'll do the rest in JS  in the
+        // componentDidMount and componentDidUpdate methods
         return React.createElement("input", null);
     },
     componentDidMount: function componentDidMount() {
@@ -141,10 +141,6 @@ module.exports = React.createClass({
 // about onChange not being present
 
 },{"react":"react"}],4:[function(require,module,exports){
-
-// var jQuery = require("jquery");
-// var $ = jQuery;
-// var bootstrap = require("bootstrap");
 "use strict";
 
 var React = require("react");

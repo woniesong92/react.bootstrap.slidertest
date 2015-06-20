@@ -1,7 +1,3 @@
-
-// var jQuery = require("jquery");
-// var $ = jQuery;
-// var bootstrap = require("bootstrap");
 var React = require("react");
 var BootstrapSlider = require("./BootstrapSlider.jsx");
 var SliderNative = require("./SliderNative.jsx");

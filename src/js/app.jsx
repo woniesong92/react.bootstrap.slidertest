@@ -16,7 +16,7 @@ var Demo = React.createClass({
         return (
             <div>
                 <SliderNativeBootstrap
-                    polyfill={false}
+                    // polyfill={false}
                     value={this.state.currentValue}
                     handleChange={this.changeValue}
                     step={this.state.step}
