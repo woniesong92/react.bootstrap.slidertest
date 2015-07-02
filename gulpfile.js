@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require('babelify');
+var reactify = require('reactify');
 var source = require('vinyl-source-stream');
 var vendors = [
   "jquery", "bootstrap", "bootstrap-slider", "react"
@@ -56,7 +57,7 @@ gulp.task('buildprod', function() {
          extensions: ['.jsx'],
          debug: true
       })
-      .transform(babelify)
+      .transform(reactify)
       .bundle()
       .pipe(source('bundle.js'))
       .pipe(gulp.dest('dist'));

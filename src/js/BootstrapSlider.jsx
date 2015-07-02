@@ -2,7 +2,7 @@ var React = require("react");
 // Bootstrap-slider.js from https://github.com/seiyria/bootstrap-slider
 var BSSlider = require("bootstrap-slider");   
 
-module.exports = React.createClass({
+var BootstrapSlider = React.createClass({
     // BootstrapSlider
     render: function () {
         // The slider's an input.  That's all we need.  We'll do the rest in JS  in the
@@ -52,6 +52,10 @@ module.exports = React.createClass({
         }
     }
 });
+
+module.exports = BootstrapSlider;
+
+
 
 
 

@@ -70,8 +70,8 @@ var React = require("react");
 // Bootstrap-slider.js from https://github.com/seiyria/bootstrap-slider
 var BSSlider = require("bootstrap-slider");
 
-var BootstrapSlider = React.createClass({
-    displayName: "BootstrapSlider",
+module.exports = React.createClass({
+    displayName: "exports",
 
     // BootstrapSlider
     render: function render() {
@@ -116,15 +116,13 @@ var BootstrapSlider = React.createClass({
     }
 });
 
-module.exports = BootstrapSlider;
-
 },{"bootstrap-slider":"bootstrap-slider","react":"react"}],3:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
 
-var SliderNative = React.createClass({
-    displayName: "SliderNative",
+module.exports = React.createClass({
+    displayName: "exports",
 
     // SliderNatve: Front end to the HTML5 native slider, i.e <input type="range">
     render: function render() {
@@ -140,8 +138,6 @@ var SliderNative = React.createClass({
     handleOnChange: function handleOnChange() {}
 });
 
-module.exports = SliderNative;
-
 // Nothing to do here.  Only present to prevent reactjs warning
 // about onChange not being present
 
@@ -151,8 +147,6 @@ module.exports = SliderNative;
 var React = require("react");
 var BootstrapSlider = require("./BootstrapSlider.jsx");
 var SliderNative = require("./SliderNative.jsx");
-
-// var x = "test" * 3;
 
 var BrowserDetectMixin = {
     // This needs to go elsewhere, e.g. load from another component.
@@ -185,14 +179,14 @@ var BrowserDetectMixin = {
     }
 };
 
-var SliderNativeBootstrap = React.createClass({
-    displayName: "SliderNativeBootstrap",
+module.exports = React.createClass({
+    displayName: "exports",
 
     // SliderNativeBootstrap
     componentWillMount: function componentWillMount() {
         // Although IE10+ displays the native range control,it:
         //      a) looks crap
-        //      b) doesn"t respond to its Input or Change events properly.
+        //      b) doesn't respond to its Input or Change events properly.
         // So have augmented a feature test with some good, old-fashioned
         // browser sniffing to always display the Bootstrap version on IE.
         var ieVersion = BrowserDetectMixin.detectIE();
@@ -221,7 +215,5 @@ var SliderNativeBootstrap = React.createClass({
         }
     }
 });
-
-module.exports = SliderNativeBootstrap;
 
 },{"./BootstrapSlider.jsx":2,"./SliderNative.jsx":3,"react":"react"}]},{},[1]);

@@ -1,5 +1,6 @@
 var React = require("react");
 var SliderNativeBootstrap = require("./SliderNativeBootstrap");
+window.React = React;
 
 var Demo = React.createClass({
     getInitialState: function (){

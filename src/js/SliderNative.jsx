@@ -1,6 +1,7 @@
 var React = require("react");
 
-module.exports = React.createClass({
+
+var SliderNative = React.createClass({
     // SliderNatve: Front end to the HTML5 native slider, i.e <input type="range">
     render: function () {
         return (
@@ -19,3 +20,5 @@ module.exports = React.createClass({
         // about onChange not being present
     }
 });
+
+module.exports = SliderNative;
