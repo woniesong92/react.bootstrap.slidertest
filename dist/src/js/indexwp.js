@@ -44,12 +44,16 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 	var SliderNativeBootstrap = __webpack_require__(157);
 	window.React = React;
 
-	var Demo = React.createClass({displayName: "Demo",
-	    getInitialState: function (){
+	var Demo = React.createClass({
+	    displayName: "Demo",
+
+	    getInitialState: function getInitialState() {
 	        return {
 	            currentValue: this.props.startValue,
 	            min: this.props.min,
@@ -57,31 +61,36 @@
 	            step: this.props.step
 	        };
 	    },
-	    render: function() {
+	    render: function render() {
 	        var newValue = this.state.currentValue;
 	        // TODO: Replace this with bootstrap version
-	        return (
-	            React.createElement("div", null, 
-	                React.createElement(SliderNativeBootstrap, {
-	                    // polyfill={false}
-	                    value: this.state.currentValue, 
-	                    handleChange: this.changeValue, 
-	                    step: this.state.step, 
-	                    max: this.state.max, 
-	                    min: this.state.min}), 
-	                React.createElement("br", null), React.createElement("br", null), 
-	                "Value: ", newValue, 
-
-	                React.createElement("br", null), React.createElement("br", null), 
-	                React.createElement("button", {onClick: this.changeAxes}, "Change axes!")
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(SliderNativeBootstrap, {
+	                value: this.state.currentValue,
+	                handleChange: this.changeValue,
+	                step: this.state.step,
+	                max: this.state.max,
+	                min: this.state.min }),
+	            React.createElement("br", null),
+	            React.createElement("br", null),
+	            "Value: ",
+	            newValue,
+	            React.createElement("br", null),
+	            React.createElement("br", null),
+	            React.createElement(
+	                "button",
+	                { onClick: this.changeAxes },
+	                "Change axes!"
 	            )
-	            );
+	        );
 	    },
-	    changeValue: function(e) {
+	    changeValue: function changeValue(e) {
 	        console.log("changeValue");
-	        this.setState({currentValue: e.target.value});
+	        this.setState({ currentValue: e.target.value });
 	    },
-	    changeAxes: function (){
+	    changeAxes: function changeAxes() {
 	        this.setState({
 	            currentValue: 500,
 	            min: 0,
@@ -92,11 +101,12 @@
 	});
 
 	React.render(React.createElement(Demo, {
-	        startValue: 3000, 
-	        max: 20000, 
-	        min: 1000, 
-	        step: 1000}), document.getElementById("main"));
+	    startValue: 3000,
+	    max: 20000,
+	    min: 1000,
+	    step: 1000 }), document.getElementById("main"));
 
+	// polyfill={false}
 
 /***/ },
 /* 1 */
@@ -20477,6 +20487,8 @@
 /* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 	var BootstrapSlider = __webpack_require__(158);
 	var SliderNative = __webpack_require__(161);
@@ -20487,8 +20499,8 @@
 	    // This needs to go elsewhere, e.g. load from another component.
 	    // Lifted from:
 	    // http://stackoverflow.com/questions/19999388/jquery-check-if-user-is-using-ie/21712356#21712356
-	    detectIE: function () {
-	                  var ua = window.navigator.userAgent;
+	    detectIE: function detectIE() {
+	        var ua = window.navigator.userAgent;
 
 	        var msie = ua.indexOf("MSIE ");
 	        if (msie > 0) {
@@ -20505,8 +20517,8 @@
 
 	        var edge = ua.indexOf("Edge/");
 	        if (edge > 0) {
-	           // IE 12 => return version number
-	           return parseInt(ua.substring(edge + 5, ua.indexOf(".", edge)), 10);
+	            // IE 12 => return version number
+	            return parseInt(ua.substring(edge + 5, ua.indexOf(".", edge)), 10);
 	        }
 
 	        // other browser
@@ -20514,11 +20526,11 @@
 	    }
 	};
 
+	var SliderNativeBootstrap = React.createClass({
+	    displayName: "SliderNativeBootstrap",
 
-
-	var SliderNativeBootstrap = React.createClass({displayName: "SliderNativeBootstrap",
 	    // SliderNativeBootstrap
-	    componentWillMount: function () {
+	    componentWillMount: function componentWillMount() {
 	        // Although IE10+ displays the native range control,it:
 	        //      a) looks crap
 	        //      b) doesn"t respond to its Input or Change events properly.
@@ -20526,10 +20538,9 @@
 	        // browser sniffing to always display the Bootstrap version on IE.
 	        var ieVersion = BrowserDetectMixin.detectIE();
 	        if (ieVersion > 1 && ieVersion < 12) {
-	                // IE up to version 11
-	                this.supportsRange = false;
-	        }
-	        else {
+	            // IE up to version 11
+	            this.supportsRange = false;
+	        } else {
 	            // IE 12+ and all other browsers
 	            // Test whether range input is accepted by creating such a field, then seeing what its
 	            // type is set to.
@@ -20537,52 +20548,43 @@
 	            input.setAttribute("type", "range");
 	            this.supportsRange = input.type !== "text" ? true : false;
 	        }
-
-
 	    },
-	    render: function () {
+	    render: function render() {
 	        var polyfill = typeof this.props.polyfill == "undefined" ? true : this.props.polyfill;
-	        if(polyfill) {
-	            if(this.supportsRange) {
-	                return (
-	                    React.createElement(SliderNative, React.__spread({},  this.props))
-	                );
+	        if (polyfill) {
+	            if (this.supportsRange) {
+	                return React.createElement(SliderNative, this.props);
+	            } else {
+	                return React.createElement(BootstrapSlider, this.props);
 	            }
-	            else {
-	                return (
-	                    React.createElement(BootstrapSlider, React.__spread({},  this.props))
-	                );
-	            }
-	        }
-	        else {
-	            return (
-	                React.createElement(BootstrapSlider, React.__spread({},  this.props))
-	            );
+	        } else {
+	            return React.createElement(BootstrapSlider, this.props);
 	        }
 	    }
 	});
 
 	module.exports = SliderNativeBootstrap;
 
-
 /***/ },
 /* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 	// Bootstrap-slider.js from https://github.com/seiyria/bootstrap-slider
-	var BSSlider = __webpack_require__(159);   
+	var BSSlider = __webpack_require__(159);
 
-	var BootstrapSlider = React.createClass({displayName: "BootstrapSlider",
+	var BootstrapSlider = React.createClass({
+	    displayName: "BootstrapSlider",
+
 	    // BootstrapSlider
-	    render: function () {
+	    render: function render() {
 	        // The slider's an input.  That's all we need.  We'll do the rest in JS  in the
 	        // componentDidMount and componentDidUpdate methods
-	        return (
-	                React.createElement("input", null)
-	            );
+	        return React.createElement("input", null);
 	    },
-	    componentDidMount: function () {
+	    componentDidMount: function componentDidMount() {
 	        var that = this;
 
 	        this.mySlider = new BSSlider(this.getDOMNode(), {
@@ -20598,26 +20600,21 @@
 	            that.props.handleChange(fakeEvent);
 	        });
 	    },
-	    componentDidUpdate: function() {
+	    componentDidUpdate: function componentDidUpdate() {
 	        this.updateSliderValues();
 	    },
-	    updateSliderValues: function() {
-	        this.mySlider
-	            .setAttribute("min", this.props.min)
-	            .setAttribute("max", this.props.max)
-	            .setAttribute("step", this.props.step)
-	            .setValue(this.props.value);
+	    updateSliderValues: function updateSliderValues() {
+	        this.mySlider.setAttribute("min", this.props.min).setAttribute("max", this.props.max).setAttribute("step", this.props.step).setValue(this.props.value);
 
 	        var sliderEnable = this.props.disabled === "disabled" ? false : true;
 	        var currentlyEnabled = this.mySlider.isEnabled();
 
-	        if(sliderEnable) {
-	            if(!currentlyEnabled) {
+	        if (sliderEnable) {
+	            if (!currentlyEnabled) {
 	                this.mySlider.enable();
 	            }
-	        }
-	        else {
-	            if(currentlyEnabled) {
+	        } else {
+	            if (currentlyEnabled) {
 	                this.mySlider.disable();
 	            }
 	        }
@@ -20625,14 +20622,6 @@
 	});
 
 	module.exports = BootstrapSlider;
-
-
-
-
-
-
-
-
 
 /***/ },
 /* 159 */
@@ -32470,30 +32459,31 @@
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 
+	var SliderNative = React.createClass({
+	    displayName: "SliderNative",
 
-	var SliderNative = React.createClass({displayName: "SliderNative",
 	    // SliderNatve: Front end to the HTML5 native slider, i.e <input type="range">
-	    render: function () {
-	        return (
-	            React.createElement("input", {id: "mySlider", 
-	                type: "range", 
-	                value: this.props.value, 
-	                min: this.props.min, 
-	                max: this.props.max, 
-	                onInput: this.props.handleChange, 
-	                onChange: this.handleOnChange, 
-	                step: this.props.step})
-	        );
+	    render: function render() {
+	        return React.createElement("input", { id: "mySlider",
+	            type: "range",
+	            value: this.props.value,
+	            min: this.props.min,
+	            max: this.props.max,
+	            onInput: this.props.handleChange,
+	            onChange: this.handleOnChange,
+	            step: this.props.step });
 	    },
-	    handleOnChange: function () {
-	        // Nothing to do here.  Only present to prevent reactjs warning
-	        // about onChange not being present
-	    }
+	    handleOnChange: function handleOnChange() {}
 	});
 
 	module.exports = SliderNative;
+
+	// Nothing to do here.  Only present to prevent reactjs warning
+	// about onChange not being present
 
 /***/ }
 /******/ ]);

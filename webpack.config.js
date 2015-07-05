@@ -6,9 +6,10 @@ module.exports = {
    module: {
       loaders: [{
             test: /\.jsx/,
-            loader: 'jsx-loader?harmony'
+            loader: 'babel-loader'
          } // loaders can take parameters as a querystring
 
       ]
    }
 };
+        //    loader: 'jsx-loader?harmony
