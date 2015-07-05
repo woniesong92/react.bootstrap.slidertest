@@ -33,6 +33,7 @@
     "babelify": "^6.1.2",
     "browserify": "^9.0.3",
     "gulp": "^3.9.0",
+    "jsx-loader": "^0.13.2",
     "node-libs-browser": "^0.5.2",
     "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0",

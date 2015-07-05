@@ -1,5 +1,5 @@
 var React = require("react");
-var SliderNativeBootstrap = require("./SliderNativeBootstrap");
+var SliderNativeBootstrap = require("./SliderNativeBootstrap.jsx");
 window.React = React;
 
 var Demo = React.createClass({
