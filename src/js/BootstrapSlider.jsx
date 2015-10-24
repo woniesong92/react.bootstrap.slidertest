@@ -1,10 +1,11 @@
-import React = from 'react';
+import React from 'react';
+import ReactDom from 'react-dom';
 // Bootstrap-slider.js from https://github.com/seiyria/bootstrap-slider
 import BSSlider from 'bootstrap-slider';
 import {es6BindAll} from 'es6bindall';
 
 class BootstrapSlider extends React.component {
-    contructor(props){
+    constructor(props){
         super(props);
         es6BindAll(this, ["updateSliderValues"]);
     }
@@ -19,7 +20,7 @@ class BootstrapSlider extends React.component {
     componentDidMount() {
         var that = this;
 
-        this.mySlider = new BSSlider(this.getDOMNode(), {
+        this.mySlider = new BSSlider(ReactDom.find(this), {
             "tooltip": this.props.tooltip || "show"
         });
 
@@ -59,7 +60,7 @@ class BootstrapSlider extends React.component {
     }
 };
 
-export default = BootstrapSlider;
+export default BootstrapSlider;
 
 
 

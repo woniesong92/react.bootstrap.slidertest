@@ -1,6 +1,6 @@
 import React from 'react';
 import BootstrapSlider from "./BootstrapSlider.jsx";
-import SliderNative from "./SliderNative.jsx");
+import SliderNative from "./SliderNative.jsx";
 
 import detectIE from './detect-ie';
 
