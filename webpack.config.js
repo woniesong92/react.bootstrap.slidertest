@@ -6,6 +6,7 @@ module.exports = {
    module: {
       loaders: [{
             test: /\.jsx/,
+            exclude: /node_modules/,
             loader: 'babel-loader'
          } // loaders can take parameters as a querystring
 

@@ -1,17 +1,22 @@
-var React = require("react");
+import React = from 'react';
 // Bootstrap-slider.js from https://github.com/seiyria/bootstrap-slider
-var BSSlider = require("bootstrap-slider");   
+import BSSlider from 'bootstrap-slider';
+import {es6BindAll} from 'es6bindall';
 
-var BootstrapSlider = React.createClass({
-    // BootstrapSlider
-    render: function () {
+class BootstrapSlider extends React.component {
+    contructor(props){
+        super(props);
+        es6BindAll(this, ["updateSliderValues"]);
+    }
+
+    render() {
         // The slider's an input.  That's all we need.  We'll do the rest in JS  in the
         // componentDidMount and componentDidUpdate methods
         return (
                 <input />
             );
-    },
-    componentDidMount: function () {
+    }
+    componentDidMount() {
         var that = this;
 
         this.mySlider = new BSSlider(this.getDOMNode(), {
@@ -26,11 +31,12 @@ var BootstrapSlider = React.createClass({
             fakeEvent.target.value = e.newValue;
             that.props.handleChange(fakeEvent);
         });
-    },
-    componentDidUpdate: function() {
+    }
+    componentDidUpdate() {
         this.updateSliderValues();
-    },
-    updateSliderValues: function() {
+    }
+
+    updateSliderValues() {
         this.mySlider
             .setAttribute("min", this.props.min)
             .setAttribute("max", this.props.max)
@@ -51,9 +57,9 @@ var BootstrapSlider = React.createClass({
             }
         }
     }
-});
+};
 
-module.exports = BootstrapSlider;
+export default = BootstrapSlider;
 
 
 

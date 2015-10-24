@@ -1,7 +1,11 @@
 .module-cache/
-/node_modules
 logs
 *.log
 *.project
 .DS_Store
-.idea
+.ideabuild/
+gh-pages/
+dist-modules/
+node_modules/
+
+

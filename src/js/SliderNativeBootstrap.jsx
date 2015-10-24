@@ -1,51 +1,20 @@
-var React = require("react");
-var BootstrapSlider = require("./BootstrapSlider.jsx");
-var SliderNative = require("./SliderNative.jsx");
+import React from 'react';
+import BootstrapSlider from "./BootstrapSlider.jsx";
+import SliderNative from "./SliderNative.jsx");
+
+import detectIE from './detect-ie';
 
 // var x = "test" * 3;
 
-var BrowserDetectMixin = {
-    // This needs to go elsewhere, e.g. load from another component.
-    // Lifted from:
-    // http://stackoverflow.com/questions/19999388/jquery-check-if-user-is-using-ie/21712356#21712356
-    detectIE: function () {
-                  var ua = window.navigator.userAgent;
 
-        var msie = ua.indexOf("MSIE ");
-        if (msie > 0) {
-            // IE 10 or older => return version number
-            return parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)), 10);
-        }
-
-        var trident = ua.indexOf("Trident/");
-        if (trident > 0) {
-            // IE 11 => return version number
-            var rv = ua.indexOf("rv:");
-            return parseInt(ua.substring(rv + 3, ua.indexOf(".", rv)), 10);
-        }
-
-        var edge = ua.indexOf("Edge/");
-        if (edge > 0) {
-           // IE 12 => return version number
-           return parseInt(ua.substring(edge + 5, ua.indexOf(".", edge)), 10);
-        }
-
-        // other browser
-        return false;
-    }
-};
-
-
-
-var SliderNativeBootstrap = React.createClass({
-    // SliderNativeBootstrap
-    componentWillMount: function () {
+class SliderNativeBootstrap extends React.component{
+    componentWillMount() {
         // Although IE10+ displays the native range control,it:
         //      a) looks crap
         //      b) doesn"t respond to its Input or Change events properly.
         // So have augmented a feature test with some good, old-fashioned
         // browser sniffing to always display the Bootstrap version on IE.
-        var ieVersion = BrowserDetectMixin.detectIE();
+        var ieVersion = detectIE();
         if (ieVersion > 1 && ieVersion < 12) {
                 // IE up to version 11
                 this.supportsRange = false;
@@ -60,8 +29,9 @@ var SliderNativeBootstrap = React.createClass({
         }
 
 
-    },
-    render: function () {
+    }
+
+    render() {
         var polyfill = typeof this.props.polyfill == "undefined" ? true : this.props.polyfill;
         if(polyfill) {
             if(this.supportsRange) {
@@ -81,6 +51,6 @@ var SliderNativeBootstrap = React.createClass({
             );
         }
     }
-});
+};
 
-module.exports = SliderNativeBootstrap;
+export default SliderNativeBootstrap;
