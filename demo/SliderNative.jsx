@@ -12,6 +12,7 @@ class SliderNative extends React.Component {
                 onInput={this.props.handleChange}
                 onChange={this.handleOnChange}
                 step={this.props.step} />
+            );
         }
 }
 

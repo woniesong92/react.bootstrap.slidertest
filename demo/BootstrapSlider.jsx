@@ -4,8 +4,8 @@ import ReactDom from 'react-dom';
 import BSSlider from 'bootstrap-slider';
 import {es6BindAll} from 'es6bindall';
 
-class BootstrapSlider extends React.component {
-    constructor(props){
+class BootstrapSlider extends React.Component {
+    constructor(props) {
         super(props);
         es6BindAll(this, ["updateSliderValues"]);
     }
